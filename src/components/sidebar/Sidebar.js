@@ -7,6 +7,7 @@ import { pages } from './Pages';
 import { Link } from 'react-router-dom';
 import screen from "../../core/screen"
 import jwt_decode from 'jwt-decode';
+import {logout} from "../../actions/login"
 const Sidebar = (props) => {
     const [width] = screen()
     const { location } = props;
@@ -17,6 +18,7 @@ const Sidebar = (props) => {
     useEffect(() => {
         if (ad) setUser(decoded);
     }, [])
+    console.log(window.onload)
     return (
         <div className="container-sidebar d-flex flex-column flex-shrink-0 p-3" style={{ width: width < 1000 ? 100 : 280, color: "white", height: "100%", zIndex: 1 }}>
             <Link to="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-light text-decoration-none">
@@ -53,7 +55,7 @@ const Sidebar = (props) => {
                     <li><a className="dropdown-item" href="#">Düzenle</a></li>
                     <li><a className="dropdown-item" href="#">Loglar</a></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item" href="#">Sign out</a></li>
+                    <li><button  className="dropdown-item" onClick={()=>props.logout()} >Sign out</button></li>
                 </ul>
             </div>
         </div>
@@ -65,4 +67,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, null)(Sidebar))
+export default withRouter(connect(mapStateToProps, {logout})(Sidebar))

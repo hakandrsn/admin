@@ -1,4 +1,4 @@
-import { FETCH_USER, FETCH_USERS, FETCH_USER_ERROR, CREATE_USER, DELETE_USER, UPDATE_USER,FETCH_DELETED_USERS } from "./types";
+import { FETCH_USER, FETCH_USERS, FETCH_USER_ERROR, CREATE_USER, DELETE_USER, UPDATE_USER, FETCH_DELETED_USERS } from "./types";
 import ax from "../core/ax";
 import { toast } from 'react-toastify';
 
@@ -12,7 +12,7 @@ export const fetchUser = id => async dispatch => {
                 type: FETCH_USER,
                 payload: res.data
             });
-        } 
+        }
     } catch (e) {
         dispatch({
             type: FETCH_USER_ERROR,
@@ -24,6 +24,7 @@ export const fetchUser = id => async dispatch => {
 }
 export const fetchUsers = (page) => async dispatch => {
     try {
+        localStorage.setItem("loading", true)
         const res = await ax.get("/api/user", { params: { page: page } });
         if (res.status != 200) {
             return toast.error("Kullanıcılar getirilemedi")
@@ -32,6 +33,8 @@ export const fetchUsers = (page) => async dispatch => {
                 type: FETCH_USERS,
                 payload: res.data
             });
+            localStorage.setItem("loading", false)
+
         }
     } catch (e) {
         dispatch({
@@ -42,14 +45,15 @@ export const fetchUsers = (page) => async dispatch => {
     }
 }
 export const createUser = (formData) => async dispatch => {
-
     try {
+        localStorage.setItem("loading", true)
         const res = await ax.post("/api/user/new", formData);
         if (res.status == "200") {
             dispatch({
                 type: CREATE_USER,
                 payload: res.data
             });
+            localStorage.setItem("loading", false)
             return toast.success("Kullanıcı eklendi")
         } else {
             return toast.error("bilinmeyen hata")
@@ -84,12 +88,14 @@ export const deleteUser = (id) => async dispatch => {
 }
 export const updateUser = (id, formData) => async dispatch => {
     try {
+        localStorage.setItem("loading", true)
         const res = await ax.patch(`/api/user/${id}`, formData);
         if (res.status == "200") {
             dispatch({
                 type: UPDATE_USER,
                 payload: res.data
             });
+            localStorage.setItem("loading", false)
             return toast.success("Kullanıcı Güncellendi")
         } else {
             return toast.error("bilinmeyen hata")

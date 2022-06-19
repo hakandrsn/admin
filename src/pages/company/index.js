@@ -18,7 +18,7 @@ const Companys = (props) => {
     return (
         <div className='container-fluid'>
             <div className='d-flex justify-content-center'>
-                <h3>Şirketler</h3>
+                <h3 className='text-capitalize'>Şirketler</h3>
             </div>
             <div className='d-flex flex-column flex-md-row flex-column-reverse justify-content-between align-items-center mb-3'>
                 <div className='d-flex justify-content-center align-items-center mb-md-0 mt-4'>
@@ -35,6 +35,7 @@ const Companys = (props) => {
                     return (<Company key={index} data={item} />)
                 })}
             </div>
+            {searchingCompany && searchingCompany.length > 0 || <h4 className='text-center'>Şirket Bulunmuyor</h4>}
         </div>
     )
 }

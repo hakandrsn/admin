@@ -7,19 +7,22 @@ import AdminLayout from './layout/AdminLayout'
 import LoginLayout from './layout/LoginLayout'
 import { ToastContainer, toast } from 'react-toastify';
 import jwt_decode from 'jwt-decode'
+import Loading from '../Loading/Loading'
 const App = () => {
   const kullanici = localStorage.getItem("token") ? jwt_decode(localStorage.getItem("token")) : ""
   useEffect(() => {
+   setTimeout(() => {
     if (!kullanici) {
       history.push("/login")
     }
     if (kullanici) {
       if (kullanici.role) {
-        history.push("/")
+        history.push("/works")
       }
     }
+   }, 1500);
   }, [kullanici])
-
+  if(localStorage.getItem("loading") == true) return <Loading />
    if(!kullanici){
     return (
       <Router history={history}>

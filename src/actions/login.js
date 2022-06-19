@@ -5,16 +5,17 @@ import history from "../core/history"
 
 export const adminLogin = (data) => async dispatch => {
     try {
+        localStorage.setItem("loading", true)
         const res = await ax.post("/api/admin/login", data)
-        console.log(res)
         if (res.status == 200) {
             dispatch({
                 type: LOGIN_USER,
                 payload: res.data
             })
+            history.push("/works")
             window.location.reload()
             localStorage.setItem("token", res.data.token)
-            return toast.done("Giriş başarılı")
+            localStorage.setItem("loading", false)
         } else {
             return toast.error("Giriş başarısız")
         }
@@ -26,8 +27,12 @@ export const adminLogin = (data) => async dispatch => {
     }
 }
 
-export const logout = () => async dispatch => {
+export const logout = () =>  {
+    localStorage.setItem("loading", true)
     localStorage.removeItem("token")
     history.push("/login")
     window.location.reload()
+    setTimeout(() => {
+        localStorage.setItem("loading", false)
+    }, 1500);
 }
