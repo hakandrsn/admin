@@ -13,8 +13,10 @@ const User = (props) => {
     const delUser =()=> {
         if(window.confirm("Silmek istediğinize emin misiniz?")==true) {
             props.deleteUser(data._id)
+            props.setReload(!props.reload)
         }
     }
+    console.log(data)
     return (
         <div className='flex-shrink-1 flex-grow-1 rounded py-2 px-3 d-flex flex-column gap-1' style={{ flexBasis: 250, backgroundColor: "#ffeaa7" }}>
             <Link to={`user/${data._id}`} className='d-flex align-items-center text-decoration-none' style={{color:"black"}}>
@@ -39,7 +41,7 @@ const User = (props) => {
             </div>
             <div className='d-flex align-items-center'>
                 <BsMailbox2 size={22} style={{ marginRight: 4 }} />
-                <label>{data.email || "Bilinmiyor"}</label>
+                <label>{data.role || "Bilinmiyor"}</label>
             </div>
            
             <div className='d-flex justify-content-between'>

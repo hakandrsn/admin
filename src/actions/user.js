@@ -12,7 +12,7 @@ export const fetchUser = id => async dispatch => {
                 type: FETCH_USER,
                 payload: res.data
             });
-        }
+        } 
     } catch (e) {
         dispatch({
             type: FETCH_USER_ERROR,

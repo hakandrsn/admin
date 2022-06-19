@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import "yup-phone";
-import history from "../../../core/history"
+// import history from "../../../core/history"
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { toast } from 'react-toastify'
@@ -25,11 +25,13 @@ const schema = yup.object({
 
 const FormUser = (props) => {
   const { register, handleSubmit, formState: { errors }, reset, control } = useForm({
-    // defaultValues: useMemo(() => {
-    //   return props.initialValues
-    // }, [props.initialValues]),
-    // resolver: yupResolver(schema)
+    defaultValues: useMemo(() => {
+      return props.initialValues
+    }, [props.initialValues]),
+    resolver: yupResolver(schema)
   })
+  const {REACT_APP_MY_ENV} = process.env
+  console.log(REACT_APP_MY_ENV)
   const onSubmit = data => {
     try {
       const formData = new FormData();
@@ -43,11 +45,11 @@ const FormUser = (props) => {
         }
       })
       props.onSubmit(formData)
+      reset()
     } catch (e) {
       toast("Bir hata oluştu")
     } finally {
-      reset()
-      history.goBack()
+      // history.goBack()
     }
   }
   return (
@@ -58,7 +60,7 @@ const FormUser = (props) => {
           <input id='firstname' type="text" className=' rounded py-1 px-2 mb-2 form-control' style={{ backgroundColor: "#fff", width: 250 }} {...register("firstname")} />
           <p style={{ color: "tomato" }}>{errors.firstname?.message}</p>
         </div>
-    {/* <img src={`${baseUrl}/uploads/sgk/sgk_31629331629.png`} width={100}/> */}
+    {/* <img src={`${process.env.}/uploads/sgk/sgk_31629331629.png`} width={100}/> */}
         <div className='col d-flex flex-column' style={{ flexBasis: 300 }}>
           <label htmlFor="lastname" className='mb-1'>Soyadı</label>
           <input id='lastname' type="text" className='rounded py-1 px-2 mb-2 form-control' style={{ backgroundColor: "#fff", width: 250 }} {...register("lastname")} />
