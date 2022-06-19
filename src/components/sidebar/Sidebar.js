@@ -18,7 +18,6 @@ const Sidebar = (props) => {
     useEffect(() => {
         if (ad) setUser(decoded);
     }, [])
-    console.log(window.onload)
     return (
         <div className="container-sidebar d-flex flex-column flex-shrink-0 p-3" style={{ width: width < 1000 ? 100 : 280, color: "white", height: "100%", zIndex: 1 }}>
             <Link to="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-light text-decoration-none">

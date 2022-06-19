@@ -43,7 +43,6 @@ const AddPersonel = (props) => {
                 })
 
         })
-        console.log(data.users)
         await ax.patch(`/api/score/add/${id}`,{users:newData,extraUsers:[]})
     }
     return (

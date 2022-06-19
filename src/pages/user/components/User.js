@@ -16,7 +16,6 @@ const User = (props) => {
             props.setReload(!props.reload)
         }
     }
-    console.log(data)
     return (
         <div className='flex-shrink-1 flex-grow-1 rounded py-2 px-3 d-flex flex-column gap-1' style={{ flexBasis: 250, backgroundColor: "#ffeaa7" }}>
             <Link to={`user/${data._id}`} className='d-flex align-items-center text-decoration-none' style={{color:"black"}}>

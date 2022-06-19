@@ -20,7 +20,6 @@ const Login = (props) => {
         //     toast.error("Giriş yapılamadı")
         // }
 
-        console.log(props.auth)
     }
     return (
         <div className='' style={{ color: "white" }}>

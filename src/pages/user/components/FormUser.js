@@ -30,8 +30,6 @@ const FormUser = (props) => {
     }, [props.initialValues]),
     resolver: yupResolver(schema)
   })
-  const {REACT_APP_MY_ENV} = process.env
-  console.log(REACT_APP_MY_ENV)
   const onSubmit = data => {
     try {
       const formData = new FormData();
