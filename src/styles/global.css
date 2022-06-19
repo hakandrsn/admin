@@ -1,0 +1,52 @@
+input[loc="login"] {
+    border-radius: 4px;
+    border: none;
+    background-color: #fff;
+    padding: 5px 10px 5px 25px;
+    margin-bottom: 10px;
+    width: 100%;
+    outline: none;
+}
+Link {
+    text-decoration: none;
+    color: inherit;
+}
+
+label[loc="login"] {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: white;
+    border-radius: 4px;
+    padding: 2px 6px;
+    background-color: transparent;
+
+}
+
+label[loc="login"]:hover,button[loc="login"]:focus,button[loc="login"]:active,label[loc="login"]:checked {
+    background-color: #fff;
+    color: black;
+    
+}
+
+input[loc="login"]:checked + label[loc="login"] {
+    background-color: #fff;
+    color: black;
+}
+input[loc="event"]{
+    border-radius: 4px;
+    border: none;
+    background-color: #ffeaa7;
+    padding: 5px 10px 5px 25px;
+    width: 50%;
+    outline: none;
+    
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number]{
+    -moz-appearance: textfield;
+}
