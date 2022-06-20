@@ -35,13 +35,14 @@ export const fetchUsers = (page) => async dispatch => {
             });
             
         }
-        localStorage.setItem("loading", false)
     } catch (e) {
         dispatch({
             type: FETCH_USER_ERROR,
             payload: e.response.data
         });
         toast.error("Kullanıcılar getirilemedi")
+    } finally {
+        localStorage.setItem("loading", false)
     }
 }
 export const createUser = (formData) => async dispatch => {
@@ -55,7 +56,6 @@ export const createUser = (formData) => async dispatch => {
                 type: CREATE_USER,
                 payload: res.data
             });
-            localStorage.setItem("loading", false)
             return toast.success("Kullanıcı eklendi")
         }
     } catch (e) {
@@ -64,6 +64,8 @@ export const createUser = (formData) => async dispatch => {
             payload: e
         });
         toast.error(e.response.data.message)
+    }finally {
+        localStorage.setItem("loading", false)
     }
 }
 export const deleteUser = (id) => async dispatch => {
@@ -95,7 +97,6 @@ export const updateUser = (id, formData) => async dispatch => {
                 type: UPDATE_USER,
                 payload: res.data
             });
-            localStorage.setItem("loading", false)
             return toast.success("Kullanıcı Güncellendi")
         } else {
             return toast.error("bilinmeyen hata")
@@ -106,6 +107,8 @@ export const updateUser = (id, formData) => async dispatch => {
             payload: e.response.data
         });
         toast.error("Kullanıcı Güncellenemedi")
+    }finally {
+        localStorage.setItem("loading", false)
     }
 }
 export const deletedUsers = () => async dispatch => {
