@@ -32,16 +32,13 @@ const FormUser = (props) => {
     resolver: yupResolver(schema)
   })
   const onSubmit = data => {
-    const newData = omit(data,"sgk")
+    const newData = omit(data,"sgk","role")
     try {
       const formData = new FormData();
       data && Object.values(newData).forEach((value, key) => {
-        if(value == data.role) {
-          { formData.append('role',data.role.value)}
-        }else {
           formData.append(Object.keys(data)[key], value)
-        }
       })
+      formData.append("role", data.role.value)
       formData.append('sgk',data.sgk[0])
       props.onSubmit(formData)
       reset()
