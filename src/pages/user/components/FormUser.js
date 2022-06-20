@@ -42,12 +42,11 @@ const FormUser = (props) => {
           formData.append(Object.keys(data)[key], value)
         }
       })
+      console.log(formData)
       props.onSubmit(formData)
       reset()
     } catch (e) {
       toast("Bir hata oluştu")
-    } finally {
-      // history.goBack()
     }
   }
   return (
