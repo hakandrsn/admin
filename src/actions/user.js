@@ -26,17 +26,16 @@ export const fetchUsers = (page) => async dispatch => {
     try {
         localStorage.setItem("loading", true)
         const res = await ax.get("/api/user", { params: { page: page } });
-        console.log(res)
         if (res.status != 200) {
-            return toast.error("Kullanıcılar getirilemedi")
+            return toast.error("Başarısız istek")
         } else {
             dispatch({
                 type: FETCH_USERS,
                 payload: res.data
             });
-            localStorage.setItem("loading", false)
-
+            
         }
+        localStorage.setItem("loading", false)
     } catch (e) {
         dispatch({
             type: FETCH_USER_ERROR,

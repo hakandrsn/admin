@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { toast } from 'react-toastify'
 import Select from "react-select"
 import { roles } from '../../../datas/roles';
+import { omit } from 'lodash';
 
 const schema = yup.object({
   firstname: yup.string().matches(/^[aA-zZğüşöçİĞÜŞÖÇ\s]+$/, "Geçersiz karakter bulunuyor").max(40, "40 karakteri geçemezsiniz").required("Zorunlu alan"),
@@ -31,18 +32,17 @@ const FormUser = (props) => {
     resolver: yupResolver(schema)
   })
   const onSubmit = data => {
+    const newData = omit(data,"sgk")
     try {
       const formData = new FormData();
-      data && Object.values(data).forEach((value, key) => {
-        if(value == data.sgk) {
-          { formData.append('sgk',data.sgk[0])}
-        } else if(value == data.role) {
+      data && Object.values(newData).forEach((value, key) => {
+        if(value == data.role) {
           { formData.append('role',data.role.value)}
         }else {
           formData.append(Object.keys(data)[key], value)
         }
       })
-      console.log(formData)
+      formData.append('sgk',data.sgk[0])
       props.onSubmit(formData)
       reset()
     } catch (e) {
