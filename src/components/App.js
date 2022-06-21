@@ -22,7 +22,7 @@ const App = () => {
     }
    }, 1500);
   }, [kullanici])
-  if(localStorage.getItem("loading") == "true") return <Loading />
+  // if(localStorage.getItem("loading") == true) return <Loading />
    if(!kullanici){
     return (
       <Router history={history}>

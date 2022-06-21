@@ -63,7 +63,7 @@ export const createUser = (formData) => async dispatch => {
             type: FETCH_USER_ERROR,
             payload: e
         });
-        toast.error(e.response.data.message)
+       return toast.error(e.response.data.message)
     }finally {
         localStorage.setItem("loading", false)
     }

@@ -32,14 +32,14 @@ const FormUser = (props) => {
     resolver: yupResolver(schema)
   })
   const onSubmit = data => {
-    const newData = omit(data,"sgk","role")
+    const newData = omit(data,"sgk")
+    const sgk =data && data.sgk[0]
     try {
       const formData = new FormData();
       data && Object.values(newData).forEach((value, key) => {
           formData.append(Object.keys(data)[key], value)
       })
-      formData.append("role", data.role.value)
-      formData.append('sgk',data.sgk[0])
+      formData.append('sgk',sgk)
       props.onSubmit(formData)
       reset()
     } catch (e) {
@@ -47,7 +47,7 @@ const FormUser = (props) => {
     }
   }
   return (
-    <form className='container-fluid' onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+    <form className='container-fluid' onSubmit={handleSubmit(onSubmit)}>
       <div className='row row-cols-3'>
         <div className='col d-flex flex-column' style={{ flexBasis: 300 }}>
           <label htmlFor="firstname" className='mb-1'>Adı</label>
@@ -64,7 +64,7 @@ const FormUser = (props) => {
         <div className='col d-flex flex-column' style={{ flexBasis: 300 }}>
           <label className='mb-1'>Cinsiyeti</label>
           <div className='d-flex justify-content-evenly'>
-            <input type="radio" className="btn-check" name="options-outlined" id="forMan" value="male" autoComplete="off"  {...register("gender")} />
+            <input type="radio" defaultChecked className="btn-check" name="options-outlined" id="forMan" value="male" autoComplete="off"  {...register("gender")} />
             <label className="btn btn-outline-info  px-4 py-1" htmlFor="forMan">Erkek</label>
             <input type="radio" className="btn-check" name="options-outlined" id="forWomen" value="female" autoComplete="off" {...register("gender")} />
             <label className="btn btn-outline-warning  px-4 py-1" htmlFor="forWomen">Kadın</label>
@@ -95,20 +95,11 @@ const FormUser = (props) => {
         </div>
         <div className='col d-flex flex-column' style={{ width: 250 }}>
           <label htmlFor="role" className='mb-1'>Çalışma rolü</label>
-          <Controller
-            control={control}
-            name="role"
-            render={({ field: { onChange, onBlur, value, ref } }) => (
-              <Select
-                inputRef={ref}
-                closeMenuOnSelect={true}
-                options={roles}
-                onChange={onChange}
-                onBlur={onBlur}
-                value={value}
-              />
-            )}
-          />
+         <select className='form-select' {...register("role")}>
+          {roles.map((role,index)=>{
+            return <option key={index} value={role.label}>{role.label}</option>
+          })}
+         </select>
           {errors.role && <p style={{ color: "tomato" }}>{errors.role?.message}</p>}
         </div>
         <div className='col d-flex flex-column' style={{ flexBasis: 300 }}>

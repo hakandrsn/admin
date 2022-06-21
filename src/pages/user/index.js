@@ -8,7 +8,7 @@ import User from './components/User'
 const Users = (props) => {
   const [search, setSearch] = useState("")
   const [page, setPage] = useState(1)
-  const [reload, setReload] = useState(true)
+  const [reload, setReload] = useState(null)
   useEffect(() => {
     props.fetchUsers(page)
   }, [page,reload])
