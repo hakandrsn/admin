@@ -48,7 +48,7 @@ export const fetchUsers = (page) => async dispatch => {
 export const createUser = (formData) => async dispatch => {
     try {
         localStorage.setItem("loading", true)
-        const res = await ax.post("/api/user/new", formData);
+        const res = await ax.post("/api/user/new/user", formData);
         if (res.status != 200) {
             return toast.error("bilinmeyen hata")
         } else {
