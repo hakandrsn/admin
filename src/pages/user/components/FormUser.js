@@ -18,7 +18,7 @@ const schema = yup.object({
   phone: yup.string().phone("tr", false, "534 312 ** ** şeklinde girmelisiniz").required("Gerekli"),
   tc: yup.string().length(11, "Emin misiniz ?").required("Mecburi alan"),
   location: yup.string().min(5, "Doğru bir adres giriniz. {mah,sokak,semt/şehir}").required(),
-  role: yup.object(),
+  role: yup.string().required("Zorunlu alan"),
   sgk:yup.mixed(),
   birthday: yup.date().required("Zorunlu alan")
 }).required()
