@@ -32,23 +32,17 @@ const FormUser = (props) => {
     resolver: yupResolver(schema)
   })
   const onSubmit = data => {
-    const newData = omit(data,"sgk")
-    const sgk =data && data.sgk[0]
-    try {
-      console.log(data)
-      const formData = new FormData();
-      data && Object.values(newData).forEach((value, key) => {
-          formData.append(Object.keys(data)[key], value)
-      })
-      formData.append('sgk',sgk)
-      console.log("fomrdata sonrası")
-      props.onSubmit(formData)
-      reset()
-      console.log("reset sonrası")
-    } catch (e) {
-      toast("Bir hata oluştu")
-      console.log("hatalar")
-    }
+    const formData = new FormData();
+    formData.append("firstname",data.firstname)
+    formData.append("lastname",data.lastname)
+    formData.append("gender",data.gender)
+    formData.append("tc",data.tc)
+    formData.append("location",data.location)
+    formData.append("birthday",data.birthday)
+    formData.append("role",data.role)
+    formData.append("phone",data.phone)
+    formData.append('sgk',data.sgk[0])
+    props.onSubmit(formData)
   }
   return (
     <form className='container-fluid' onSubmit={handleSubmit(onSubmit)}>

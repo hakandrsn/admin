@@ -57,7 +57,7 @@ const ScoreDetail = (props) => {
             <div>
                 <h5 className='text-center fs-5 mb-3 mx-auto w-50 rounded py-1' style={{ backgroundColor: "#fab1a0" }}>Bizden giden personel</h5>
                 <div className='d-flex justify-content-between mx-4'>
-                    <lebel>Sonuçlar</lebel>
+                    <label>Sonuçlar</label>
                     <label>Toplam Ödeme : {totalUserBalance+totalExtraBalance}</label>
                 </div>
                 <div>

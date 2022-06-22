@@ -1,7 +1,7 @@
 import { FETCH_USER, FETCH_USERS, FETCH_USER_ERROR, CREATE_USER, DELETE_USER, UPDATE_USER, FETCH_DELETED_USERS } from "./types";
 import ax from "../core/ax";
 import { toast } from 'react-toastify';
-
+import axios from "axios"
 export const fetchUser = id => async dispatch => {
     try {
         const res = await ax.get(`/api/user/${id}`);
@@ -46,15 +46,9 @@ export const fetchUsers = (page) => async dispatch => {
     }
 }
 export const createUser = (formData) => async dispatch => {
-    console.log(formData)
     try {
         localStorage.setItem("loading", true)
-        const res = await ax.post("/api/user/new", formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
-        console.log(res)
+        const res = await ax.post(`/api/user/new`, formData);
         if (res.status == 200) {
             dispatch({
                 type: CREATE_USER,

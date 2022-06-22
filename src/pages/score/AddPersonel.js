@@ -9,7 +9,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { fetchUsers } from "../../actions/user"
 import date from "date-and-time"
 import ax from '../../core/ax'
-
+import history from "../../core/history"
 const AddPersonel = (props) => {
     const { control, formState: { errors } ,handleSubmit} = useForm()
     const [reload, setReload] = React.useState(false)
@@ -19,10 +19,10 @@ const AddPersonel = (props) => {
         props.fetchScore(id)
         props.fetchUsers()
     }, [reload])
-
+    const results =users && score && users.filter(({ _id: id1 }) => !score.users.some(({ id: id2 }) => id2 === id1));
     const formetterUser = () => {
         let newUsers = []
-        users && users.forEach(user => {
+        results && results.forEach(user => {
             newUsers.push({
                 label: user.firstname + " " + user.lastname,
                 value: user._id,
@@ -41,9 +41,9 @@ const AddPersonel = (props) => {
                     balance: user.balance,
                     ["role"]: "garson"
                 })
-
         })
         await ax.patch(`/api/score/add/${id}`,{users:newData,extraUsers:[]})
+        history.goBack()
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
