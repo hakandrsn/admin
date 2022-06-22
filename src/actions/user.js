@@ -46,6 +46,7 @@ export const fetchUsers = (page) => async dispatch => {
     }
 }
 export const createUser = (formData) => async dispatch => {
+    console.log(formData)
     try {
         localStorage.setItem("loading", true)
         const res = await ax.post("/api/user/new", formData, {
@@ -53,20 +54,22 @@ export const createUser = (formData) => async dispatch => {
                 'Content-Type': 'multipart/form-data'
             }
         });
-        if (res.status != 200) {
-            return toast.error("bilinmeyen hata")
-        } else {
+        console.log(res)
+        if (res.status == 200) {
             dispatch({
                 type: CREATE_USER,
                 payload: res.data
             });
             return toast.success("Kullanıcı eklendi")
+        } else {
+            return toast.error("bilinmeyen hata")
         }
     } catch (e) {
         dispatch({
             type: FETCH_USER_ERROR,
             payload: e
         });
+        console.log(e)
         return toast.error(e.response.data.message)
     } finally {
         localStorage.setItem("loading", false)
