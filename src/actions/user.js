@@ -48,7 +48,9 @@ export const fetchUsers = (page) => async dispatch => {
 export const createUser = (formData) => async dispatch => {
     try {
         localStorage.setItem("loading", true)
-        const res = await ax.post("/api/user/new", formData);
+        const res = await ax.post("/api/user/new", formData,{headers:{
+            'content-type': 'multipart/form-data'
+        }});
         if (res.status != 200) {
             return toast.error("bilinmeyen hata")
         } else {
@@ -91,7 +93,9 @@ export const deleteUser = (id) => async dispatch => {
 export const updateUser = (id, formData) => async dispatch => {
     try {
         localStorage.setItem("loading", true)
-        const res = await ax.patch(`/api/user/${id}`, formData);
+        const res = await ax.patch(`/api/user/${id}`,  formData,{headers:{
+            'content-type': 'multipart/form-data'
+        }});
         if (res.status == "200") {
             dispatch({
                 type: UPDATE_USER,

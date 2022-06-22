@@ -3,7 +3,7 @@ export default axios.create({
     baseURL: process.env.REACT_APP_PROD_URL,
     headers: {
         "Content-Type": "application/json",
-        Authorization: `${localStorage.getItem("token") ? `Bearer `+localStorage.getItem("token"): ""}`,
+        Authorization: `${localStorage.getItem("token") ? `Bearer `+toString(localStorage.getItem("token")): ""}`,
         'Access-Control-Allow-Origin': '*'
     }
 })
