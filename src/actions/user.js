@@ -33,7 +33,7 @@ export const fetchUsers = (page) => async dispatch => {
                 type: FETCH_USERS,
                 payload: res.data
             });
-            
+
         }
     } catch (e) {
         dispatch({
@@ -48,9 +48,11 @@ export const fetchUsers = (page) => async dispatch => {
 export const createUser = (formData) => async dispatch => {
     try {
         localStorage.setItem("loading", true)
-        const res = await ax.post("/api/user/new", formData,{headers:{
-            'content-type': 'multipart/form-data'
-        }});
+        const res = await ax.post("/api/user/new", formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
         if (res.status != 200) {
             return toast.error("bilinmeyen hata")
         } else {
@@ -65,8 +67,8 @@ export const createUser = (formData) => async dispatch => {
             type: FETCH_USER_ERROR,
             payload: e
         });
-       return toast.error(e.response.data.message)
-    }finally {
+        return toast.error(e.response.data.message)
+    } finally {
         localStorage.setItem("loading", false)
     }
 }
@@ -93,9 +95,11 @@ export const deleteUser = (id) => async dispatch => {
 export const updateUser = (id, formData) => async dispatch => {
     try {
         localStorage.setItem("loading", true)
-        const res = await ax.patch(`/api/user/${id}`,  formData,{headers:{
-            'content-type': 'multipart/form-data'
-        }});
+        const res = await ax.patch(`/api/user/${id}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
         if (res.status == "200") {
             dispatch({
                 type: UPDATE_USER,
@@ -111,7 +115,7 @@ export const updateUser = (id, formData) => async dispatch => {
             payload: e.response.data
         });
         toast.error("Kullanıcı Güncellenemedi")
-    }finally {
+    } finally {
         localStorage.setItem("loading", false)
     }
 }
