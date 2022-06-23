@@ -8,10 +8,9 @@ import User from './components/User'
 const Users = (props) => {
   const [search, setSearch] = useState("")
   const [page, setPage] = useState(1)
-  const [reload, setReload] = useState(null)
   useEffect(() => {
     props.fetchUsers(page)
-  }, [page,reload])
+  }, [page,props.users.length])
   const filteredUsers = props.users && props.users.filter(user => {
     if (search == "") return props.users
     return user.firstname.toLowerCase().includes(search.toLowerCase()) || user.lastname.toLowerCase().includes(search.toLowerCase())
@@ -37,7 +36,7 @@ const Users = (props) => {
 
       <div className='d-flex flex-wrap gap-2 mb-4'>
         {filteredUsers && filteredUsers.map((user) => {
-          return <User key={user._id} data={user} setReload={setReload} reload={reload}/>
+          return <User key={user._id} data={user}/>
         })}
       </div>
       {filteredUsers && filteredUsers.length > 0 || <h4 className='text-center'>Personel Bulunmuyor</h4>}

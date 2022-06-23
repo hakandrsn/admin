@@ -13,7 +13,6 @@ const User = (props) => {
     const delUser =()=> {
         if(window.confirm("Silmek istediğinize emin misiniz?")==true) {
             props.deleteUser(data._id)
-            props.setReload(!props.reload)
         }
     }
     return (
