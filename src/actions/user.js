@@ -48,7 +48,7 @@ export const fetchUsers = (page) => async dispatch => {
 export const createUser = (formData) => async dispatch => {
     try {
         localStorage.setItem("loading", true)
-        const res = await ax.post(`/api/user/new`, formData);
+        const res = await ax.post(`/api/user/new`, formData, {headers : { "content-type": "multipart/form-data" }});
         if (res.status == 200) {
             dispatch({
                 type: CREATE_USER,
@@ -64,7 +64,7 @@ export const createUser = (formData) => async dispatch => {
             payload: e
         });
         console.log(e)
-        return toast.error(e.response.data.message)
+        return toast.error(e.response.data.message || e.message)
     } finally {
         localStorage.setItem("loading", false)
     }

@@ -1,15 +1,13 @@
 import React, { useMemo } from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import "yup-phone";
 // import history from "../../../core/history"
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { toast } from 'react-toastify'
-import Select from "react-select"
 import { roles } from '../../../datas/roles';
-import { omit } from 'lodash';
+import history from "../../../core/history"
 
 const schema = yup.object({
   firstname: yup.string().matches(/^[aA-zZğüşöçİĞÜŞÖÇ\s]+$/, "Geçersiz karakter bulunuyor").max(40, "40 karakteri geçemezsiniz").required("Zorunlu alan"),
@@ -41,8 +39,9 @@ const FormUser = (props) => {
     formData.append("birthday",data.birthday)
     formData.append("role",data.role)
     formData.append("phone",data.phone)
-    formData.append('sgk',data.sgk[0])
+    // formData.append('sgk',data.sgk[0])
     props.onSubmit(formData)
+    history.goBack()
   }
   return (
     <form className='container-fluid' onSubmit={handleSubmit(onSubmit)}>
@@ -100,11 +99,11 @@ const FormUser = (props) => {
          </select>
           {errors.role && <p style={{ color: "tomato" }}>{errors.role?.message}</p>}
         </div>
-        <div className='col d-flex flex-column' style={{ flexBasis: 300 }}>
+        {/* <div className='col d-flex flex-column' style={{ flexBasis: 300 }}>
           <label htmlFor="sgk" className='mb-1'>SGK dosyası</label>
           <input type="file" id='sgk' className='rounded py-1 px-2 mb-2 form-control' style={{ backgroundColor: "#fff", width: 250 }} {...register("sgk")} />
           <p style={{ color: "tomato" }}>{errors.sgk?.message}</p>
-        </div>
+        </div> */}
       </div>
       <input className='py-2 px-3 rounded' style={{ backgroundColor: "#fab1a0" }} type="submit" />
     </form>
