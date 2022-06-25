@@ -10,8 +10,8 @@ import { roles } from '../../../datas/roles';
 import history from "../../../core/history"
 
 const schema = yup.object({
-  firstname: yup.string().matches(/^[aA-zZğüşöçİĞÜŞÖÇ\s]+$/, "Geçersiz karakter bulunuyor").max(40, "40 karakteri geçemezsiniz").required("Zorunlu alan"),
-  lastname: yup.string().matches(/^[aA-zZğüşöçİĞÜŞÖÇ\s]+$/, "Geçersiz karakter bulunuyor").min(2).max(50, "50 karakteri aşamazsınız").required(),
+  firstname: yup.string().matches(/^[aA-zZğüşöıçIİĞÜŞÖÇ\s]+$/, "Geçersiz karakter bulunuyor").max(40, "40 karakteri geçemezsiniz").required("Zorunlu alan"),
+  lastname: yup.string().matches(/^[aA-zZğüşöçıIİĞÜŞÖÇ\s]+$/, "Geçersiz karakter bulunuyor").min(2).max(50, "50 karakteri aşamazsınız").required(),
   gender: yup.string("Seçmelisin !").nullable().required("Seçmelisin"),
   phone: yup.string().phone("tr", false, "534 312 ** ** şeklinde girmelisiniz").required("Gerekli"),
   tc: yup.string().length(11, "Emin misiniz ?").required("Mecburi alan"),

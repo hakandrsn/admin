@@ -5,21 +5,25 @@ import { RiUser3Line, RiLockPasswordLine } from 'react-icons/ri'
 import topPP from "../../assets/icons/work.png"
 import { useForm } from "react-hook-form"
 import { withRouter } from 'react-router-dom';
+import Loading from "../../Loading/Loading"
+import { useState } from 'react';
 const Login = (props) => {
-
+    const [logining, setLogining] = useState(false)
     const { register, handleSubmit } = useForm()
     const onSubmit = async (data) => {
         props.adminLogin(data)
-        // try {
-        //     const log = await ax.post("/api/admin/login", data)
-        //     localStorage.setItem("token", log.data.token)
-        //     if(log.data.token){
-        //         window.location.reload()
-        //     }
-        // } catch (e) {
-        //     toast.error("Giriş yapılamadı")
-        // }
-
+    }
+    useEffect(() => {
+        window.addEventListener("submit", () => {
+            if (localStorage.getItem("loading") == "true") {
+                setLogining(true)
+            } else {
+                setLogining(false)
+            }
+        })
+    }, [localStorage.getItem("loading"), logining,props.auth.message])
+    if (localStorage.getItem("loading") == "true") {
+        return <Loading />
     }
     return (
         <div className='' style={{ color: "white" }}>
@@ -42,7 +46,7 @@ const Login = (props) => {
                             <label loc="login" htmlFor="company">Kurumsal</label> */}
 
                         </div>
-                        <div className='text-center mb-2 text-lowercase' style={{color:"tomato"}}>
+                        <div className='text-center mb-2 text-lowercase' style={{ color: "tomato" }}>
                             <label className=''>{props.auth && props.auth.message && props.auth.message}</label>
                         </div>
                         <div className='position-relative'>
@@ -57,7 +61,7 @@ const Login = (props) => {
                             <input {...register("rememberme")} type="checkbox" id='remember' className='' />
                             <label className='ms-1' htmlFor='remember'>Beni hatırla</label>
                         </div>
-                        <div className='mx-auto' style={{width:140}}>
+                        <div className='mx-auto' style={{ width: 140 }}>
                             <input className='my-2 w-100 text-capitalize text-center' loc="event" type="submit" value='Giriş' />
                         </div>
                     </form>

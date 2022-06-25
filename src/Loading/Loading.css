@@ -31,7 +31,7 @@
     justify-content: center;
     flex-direction: column;
     background: rgba(114, 114, 116, alpha);
-    background-color: rgba(114, 114, 116, .4);
+    background-color: rgba(114, 114, 116, .1);
 	color: var(--fg);
     z-index: 99;
 

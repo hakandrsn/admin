@@ -49,16 +49,17 @@ const ScoreDetail = (props) => {
     }
     return (
         <div>
-            <div className='d-flex justify-content-center mb-2 position-relative'>
+            <div className='d-flex justify-content-center mb-2 position-relative  rounded align-items-center'>
+                <Link to={`/works`} className='position-absolute start-0 border-0 rounded px-2 py-1 text-decoration-none' style={{ backgroundColor: "tomato", color: "black" }}>Geri</Link>
                 <h3>{props.score && props.score.companyName}</h3>
-                <Link to={`/works/add/${id}`} className='position-absolute end-0 border-0 rounded px-2 py-1 text-decoration-none' style={{ backgroundColor: "#74b9ff", color: "black" }}>Personel Ekle</Link>
+                <Link to={`/works/add/${id}`} className='position-absolute end-0 border-0 rounded px-2 py-1 text-decoration-none' style={{ backgroundColor: "tomato", color: "black" }}>Personel Ekle</Link>
             </div>
 
             <div>
-                <h5 className='text-center fs-5 mb-3 mx-auto w-50 rounded py-1' style={{ backgroundColor: "#fab1a0" }}>Bizden giden personel</h5>
+                <h5 className='text-center fs-5 mb-3 mx-auto w-50 rounded py-1' style={{ backgroundColor: "ButtonFace" }}>Bizden giden personel</h5>
                 <div className='d-flex justify-content-between mx-4'>
                     <label>Sonuçlar</label>
-                    <label>Toplam Ödeme : {totalUserBalance+totalExtraBalance}</label>
+                    <label>Toplam Ödeme : {totalUserBalance + totalExtraBalance}</label>
                 </div>
                 <div>
 
@@ -99,7 +100,7 @@ const ScoreDetail = (props) => {
                             }
                         </tbody>
                     </table>
-                    <h5 className='text-center fs-5 mb-3 mx-auto w-50 rounded py-1' style={{ backgroundColor: "#b2bec3" }}>Dışardan gelen personel</h5>
+                    <h5 className='text-center fs-5 mb-3 mx-auto w-50 rounded py-1' style={{ backgroundColor: "ButtonFace" }}>Dışardan gelen personel</h5>
                     <table className='table' >
                         <thead>
                             <tr>

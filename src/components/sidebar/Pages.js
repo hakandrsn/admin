@@ -17,7 +17,7 @@ export const pages =[
     },
     {
         name:"Şirket İstekleri",
-        path:"/companywork",
+        path:"/request",
         icon:VscGitPullRequestDraft ,
         exact:true
     },

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Switch, Route, Router, withRouter } from 'react-router-dom'
-
+import { Switch, Route } from 'react-router-dom'
+import screen from "../../core/screen"
 
 //base
 import Footer from '../footer/Footer'
@@ -9,7 +9,7 @@ import Sidebar from '../sidebar/Sidebar'
 
 //Pages
 import Dashboard from '../../pages/dashboard'
-import Profile from "../../pages/profile" 
+import Profile from "../../pages/profile"
 import Request from '../../pages/request/Request'
 import User from '../../pages/user'
 import Company from "../../pages/company"
@@ -24,41 +24,47 @@ import GoPersonel from "../../pages/personel/GoPersonel"
 import Score from '../../pages/score'
 import ScoreDetail from '../../pages/score/ScoreDetail'
 import AddPersonel from '../../pages/score/AddPersonel'
+import NewRequest from '../../pages/request/NewRequest'
+
 
 const AdminLayout = () => {
+  const [width] = screen()
   return (
-    <div className='admin-layout'>
-    <Header/>
-    <Sidebar />
-    <main>
-      <Switch>
-         <Route exact path="/" component={Dashboard} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/users" component={User} />
-        <Route exact path="/user/new" component={NewUser} />
-        <Route exact path="/user/:id" component={UpdateUser} />
+    <div className='admin-layout position-relative' >
+      <Header />
+      <Sidebar />
+      <main>
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/users" component={User} />
+          <Route exact path="/user/new" component={NewUser} />
+          <Route exact path="/user/:id" component={UpdateUser} />
 
-        <Route exact path="/companys" component={Company}  />
-        <Route exact path="/works" component={Score}  />
-        <Route exact path="/works/:id" component={ScoreDetail}  />
-        <Route exact path="/works/add/:id" component={AddPersonel}  />
+          <Route exact path="/companys" component={Company} />
+          <Route exact path="/works" component={Score} />
+          <Route exact path="/works/:id" component={ScoreDetail} />
+          <Route exact path="/works/add/:id" component={AddPersonel} />
 
 
-        <Route exact path="/company/new" component={NewCompany} />
-        <Route exact path="/company/:id" component={UpdateCompany} />
+          <Route exact path="/company/new" component={NewCompany} />
+          <Route exact path="/company/:id" component={UpdateCompany} />
 
-        <Route exact path="/gopersonel" component={GoPersonel} />
+          <Route exact path="/gopersonel" component={GoPersonel} />
+          <Route exact path="/request" component={Request} />
+          <Route exact path="/request/new" component={NewRequest} />
 
-{/* 
+
+          {/* 
         <Route exact path="/request/new" component={Newreq} />
         <Route exact path="/waitworks/gopc/:id" component={ListDetailForWork} />  */}
 
 
 
-      </Switch>
-    </main>
-    <Footer />
-  </div>
+        </Switch>
+      </main>
+      <Footer />
+    </div>
   )
 }
 

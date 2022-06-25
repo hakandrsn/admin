@@ -17,9 +17,11 @@ export const adminLogin = (data) => async dispatch => {
             localStorage.setItem("token", res.data.token)
             localStorage.setItem("loading", false)
         } else {
+            localStorage.setItem("loading", false)
             return toast.error("Giriş başarısız")
         }
     } catch (e) {
+        localStorage.setItem("loading", false)
         dispatch({
             type: LOGIN_ERROR,
             payload: e.response.data.message
@@ -28,11 +30,10 @@ export const adminLogin = (data) => async dispatch => {
 }
 
 export const logout = () =>  {
-    localStorage.setItem("loading", true)
+    localStorage.setItem("loading", false)
     localStorage.removeItem("token")
-    history.push("/login")
     window.location.reload()
     setTimeout(() => {
-        localStorage.setItem("loading", false)
-    }, 1500);
+        history.push("/login")
+    }, 500);
 }

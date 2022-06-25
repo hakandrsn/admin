@@ -24,7 +24,7 @@ const Users = (props) => {
         <div className='d-flex justify-content-center align-items-center mb-md-0 mt-4'>
           <label className='px-3 py-2 rounded' style={{ backgroundColor: "#ff7675" }}>Ara</label>
           <input className='' type="search" style={{ width: 200, height: 40 }} onChange={value => setSearch(value.target.value)} />
-         <div className='ms-2 fs-4'>
+         <div className='ms-2  text-nowrap d-flex'>
            <label >Mevcut Personel</label>
          <label className=' ms-3'>{props.users&& props.users.length}</label>
          </div>
