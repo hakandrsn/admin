@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const Bottom = ({ pages, width, path }) => {
     return (
-        <div className='position-absolute translate-middle top-100 start-50 bg-dark w-100 ' style={{zIndex:10,height:50}}>
-            <div className="nav nav-pills mb-auto list-unstyled list-group-horizontal flex-nowrap">
+        <div className='position-absolute translate-middle top-100 start-50 bg-dark w-100 py-2' style={{zIndex:10,height:60}}>
+            <div className="nav nav-pills list-unstyled list-group-horizontal flex-nowrap">
                 {
                     pages && pages.map((page, index) => {
                         return (
