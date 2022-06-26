@@ -59,7 +59,7 @@ const ScoreDetail = (props) => {
                 <h5 className='text-center fs-5 mb-3 mx-auto w-50 rounded py-1' style={{ backgroundColor: "ButtonFace" }}>Bizden giden personel</h5>
                 <div className='d-flex justify-content-between mx-4'>
                     <label>Sonuçlar</label>
-                    <label>Toplam Ödeme : {totalUserBalance + totalExtraBalance}</label>
+                    <label>Toplam Ödeme : {isNaN(totalUserBalance + totalExtraBalance) == true ? 0 :Number(totalUserBalance + totalExtraBalance)}</label>
                 </div>
                 <div>
 

@@ -19,11 +19,11 @@ const Sidebar = (props) => {
         if (ad) setUser(decoded);
     }, [])
     return (
-       <div >
+       <div className=''>
              {
                 width < 600 ?
                     <Bottom pages={pages} width={width} path={path} /> :
-                    <div className="container-sidebar d-flex flex-column flex-shrink-0 p-3" style={{ width: width < 1000 ? 100 : 280, color: "white", height: "100%", zIndex: 1 }}>
+                    <div className="container-sidebar d-flex flex-column position-relative flex-shrink-0 p-3" style={{ width: width < 1000 ? 100 : 280, color: "white", height: "100%", zIndex: 1 }}>
                         <Left pages={pages} width={width} path={path} user={user} logout={props.logout} />
                     </div>
             }

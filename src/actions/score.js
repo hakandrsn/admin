@@ -77,14 +77,14 @@ export const addWorker = (id, data) => async dispatch => {
 
 export const deleteWork = (id) => async dispatch => {
     try {
-        const res = await ax.delete(`/api/score/${id}`)
-        if (res.status != 200) {
-            return toast.error("İş silinemedi")
+        const res = await ax.patch(`/api/score/hide/${id}`)
+        if (res.status == 200) {
+            dispatch({
+                type:DELETE_WORK,
+                payload:res.data
+            })
         } else {
-            return dispatch({
-                type: DELETE_WORK,
-                payload: res.data
-            });
+            return toast.error("İş silinemedi")
         }
     } catch (e) {
         toast.error("İş silinemedi")
@@ -93,13 +93,13 @@ export const deleteWork = (id) => async dispatch => {
 export const updateWork = (id, data) => async dispatch => {
     try {
         const res = await ax.patch(`/api/score/${id}`, data)
-        if (res.status != 200) {
-            return toast.error("İş güncellenemedi")
+        if (res.status == 200) {
+            dispatch({
+                type:UPDATE_WORK,
+                payload:res.data
+            })
         } else {
-            return dispatch({
-                type: UPDATE_WORK,
-                payload: res.data
-            });
+            return toast.error("Hatalı İşlem")
         }
     } catch (e) {
         toast.error("İş güncellenemedi")
